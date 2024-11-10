@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
 
 // Маршрут для отключения сервера с проверкой логина и пароля
 app.get('/api/shutdown', (req, res) => {
-    const { login, password } = req.query;
+    const { login, pass } = req.query;
 
-    if (login === userData.login && password === userData.password) {
+    if (login === userData.login && pass === userData.password) {
         console.log('Сервер будет остановлен...');
         res.send('Остановка сервера...');
         setTimeout(() => { 
@@ -71,7 +71,7 @@ app.get('/api/docs', (req, res) => {
           Этот маршрут позволяет остановить работу сервера при условии правильного ввода логина и пароля.
 
           Пример запроса:
-          GET http://<ваш_домен>>/api/shutdown?login=root&padding=password
+          GET http://<ваш_домен>>/api/shutdown?login=root&pass=password
 
           
          
