@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/api/shutdown', (req, res) => {
     const { login, pass } = req.query;
 
-    if (login === userData.login && pass === userData.password) {
+    if (login === userData.login && pass === userData.pass) {
         console.log('Сервер будет остановлен...');
         res.send('Остановка сервера...');
         setTimeout(() => { 
