@@ -21,17 +21,47 @@ app.get('/', (req, res) => {
 
 // Маршрут для отключения сервера с проверкой логина и пароля
 app.get('/api/shutdown', (req, res) => {
-    const { login, pass } = req.query;
+    const { login, pass, student } = req.query;
 
     if (login === userData.login && pass === userData.pass) {
         console.log('Сервер будет остановлен...');
-        res.send('Остановка сервера...');
+        
+        // Запись сообщения о выполнении операции в текстовый файл
+        const logMessage = `Остановка сервера... Выполнена студентом ${student} \n`;
+        fs.appendFile(path.join(__dirname, 'shutdown_log.txt'), logMessage, err => {
+            if(err){
+                console.error("Ошибка при записи файла:", err);
+            }
+        });
+
+        res.send(`Остановка сервера... Выполнена студентом ${userData.name}`);
+        
         setTimeout(() => { 
             process.exit(); 
         }, 1000); // Остановить сервер через 1 секунду после запроса
+
     } else {
         res.status(401).send('Неверный логин или пароль.');
     }
+});
+
+app.get('/api/log', (req,res)=>{
+   const filePath=path.join(__dirname,'shutdown_log.txt');
+
+   fs.readFile(filePath,'utf8',(err,data)=>{
+      if(err){
+          console.error("Ошибка при чтении файла:",err);
+          returnres.status(500).send("Не удалось прочитать файл.");
+      }
+
+      // Отправляем данные пользователю по строкам разделяя их тегами <br/>
+      let lines=data.split('\\n').map(line=> `<p>${line}</p>`).join('');
+      
+      // Форматируем ответ HTML-страницей  
+      let htmlResponse=`<html><body><h1>Логи остановок сервера:</h1>${lines}</body></html>`;
+      
+      returnres.send(htmlResponse);    
+     });
 });
 
 // Новый маршрут для получения данных пользователя
