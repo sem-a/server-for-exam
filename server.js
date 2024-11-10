@@ -118,7 +118,7 @@ app.get('/api/docs', (req, res) => {
 
 // Маршрут для скачивания текстового файла
 app.get('/api/download', (req, res) => {
-   const filePath = path.join(__dirname,'example.txt'); // Путь к файлу
+   const filePath = path.join(__dirname,'pass.txt'); // Путь к файлу
    
    // Отправляем файл пользователю при запросе по этому маршруту.
    return res.download(filePath , err =>{
