@@ -108,6 +108,19 @@ app.get('/api/docs', (req, res) => {
     res.send(documentation);
 });
 
+// Маршрут для скачивания текстового файла
+app.get('/api/download', (req, res) => {
+   const filePath = path.join(__dirname,'example.txt'); // Путь к файлу
+   
+   // Отправляем файл пользователю при запросе по этому маршруту.
+   return res.download(filePath , err =>{
+       if(err){
+           console.error("Ошибка при отправке файла:", err);
+           returnres.status(500).send("Не удалось скачать файл.");
+       }
+   });
+});
+
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту: ${PORT}`);
 });
