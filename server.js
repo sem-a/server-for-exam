@@ -35,7 +35,7 @@ app.get('/api/shutdown', (req, res) => {
             }
         });
 
-        res.send(`Остановка сервера... Выполнена студентом ${userData.name}`);
+        res.send(`Остановка сервера... Выполнена студентом ${student}`);
         
         setTimeout(() => { 
             process.exit(); 
