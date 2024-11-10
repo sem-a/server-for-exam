@@ -8,7 +8,7 @@ const userData = {
     login: 'root',
     name: 'admin',
     createdAt: new Date().toISOString(),
-    pass: 'password'
+    pass: 'mega-slozhniy-parol'
 };
 
 // Главная страница
