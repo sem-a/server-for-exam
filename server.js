@@ -100,13 +100,13 @@ app.get('/api/docs', (req, res) => {
        <h3>2. Отключение сервера</h3>
            - URL: /api/shutdown<br/>
            - Метод: GET<br/>
-           - Параметры запроса:<ul><li><strong>login </strong>(string): Логин администратора.</li><li><strong>Password </strong>(string): Пароль администратора.</li></ul>
+           - Параметры запроса:<ul><li><strong>login </strong>(string): Логин администратора.</li><li><strong>Password </strong>(string): Пароль администратора.</li><li><strong>student </strong>(string): имя студента.</li></ul>
 
           Описание:
           Этот маршрут позволяет остановить работу сервера при условии правильного ввода логина и пароля.
 
           Пример запроса:
-          GET http://<ваш_домен>>/api/shutdown?login=root&pass=password
+          GET http://<ваш_домен>>/api/shutdown?login=root&pass=password&student=<ваше_имя>
 
           
          
