@@ -52,16 +52,16 @@ app.get('/api/log', (req,res)=>{
    fs.readFile(filePath,'utf8',(err,data)=>{
       if(err){
           console.error("Ошибка при чтении файла:",err);
-          returnres.status(500).send("Не удалось прочитать файл.");
+          return res.status(500).send("Не удалось прочитать файл.");
       }
 
       // Отправляем данные пользователю по строкам разделяя их тегами <br/>
-      let lines=data.split('\\n').map(line=> `<p>${line}</p>`).join('');
+      let lines=data.split('\n').map(line=> `<p>${line}</p>`).join('');
       
       // Форматируем ответ HTML-страницей  
       let htmlResponse=`<html><body><h1>Логи остановок сервера:</h1>${lines}</body></html>`;
       
-      returnres.send(htmlResponse);    
+      return res.send(htmlResponse);    
      });
 });
 
