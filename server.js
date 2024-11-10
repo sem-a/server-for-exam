@@ -10,7 +10,10 @@ const userData = {
     createdAt: new Date().toISOString(),
     pass: 'mega-slozhniy-parol'
 };
-
+app.use((req, res, next) => {
+    console.log(`Запрос ${req.method} к ${req.url}`);
+    next(); // Передаем управление следующему обработчику
+});
 // Главная страница
 app.get('/', (req, res) => {
     res.send('Сервер работает стабильно!');
